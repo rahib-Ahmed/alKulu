@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Philosopher:wght@700&display=swap');
+.i-phone-12 {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    background-color: #9dcdc8;
+    overflow: hidden;
+  }
+  .textColor {
+    font-family: 'Philosopher';
+      color: rgb(56, 75, 66);
+  }
+  .master {
+      display: flex;
+      flex-direction: column;
+      /* background-color: antiquewhite; */
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+  }
+  .logo{
+     padding-top: 80px;
+      width: 100vw;
+      justify-content: center;
+      display: flex;
+  }
+  .minorFlex {
+    
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      height: 40vh;
+      justify-content: space-evenly;
+      align-items: center;
+      
+  }
+  *:focus {
+    outline: none;
+}
+  .inputField {
+      color: "rgb(56, 75, 66)";
+      width: 60vw;
+      border: "rgba(0, 0, 0, 0)";
+      background: rgb(241, 255, 250);
+      border-radius: 8px;
+      padding: 15px;
+      border-color: transparent;
+      line-height: 1.4px;
+      text-align: left;
+      font: default;
+      color:rgb(56, 75, 66);
+      caret-color: rgb(51, 51, 51);
+      
+  }
+  .minuteFlex{
+      /* background-color: blueviolet; */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100vw;
+      height: 20vh;
+      padding-top: 10px;
+      margin-bottom: 90px;
+      
+  }
+  .button {
+      background-color: rgb(36, 82, 78);
+      color:rgb(255, 255, 255);
+      padding: 15, 25, 15, 25;
+      font-size: 16px;
+      border-radius: 8px; 
+      padding-right: 25px;
+      padding-left: 25px;
+      padding-bottom: 15px;
+      padding-top: 15px;
+      text-align: center;
+      font-family: 'Philosopher';
+      margin-bottom: 20px;    
+  }
+  .admin {
+    width: auto; /* 217px */
+    height: auto; /* 18px */
+    overflow: visible;
+    white-space: pre;
+    font-weight: 700;
+    font-style: normal;
+    font-family: "Philosopher", serif;
+    color: #334B49;
+    font-size: 14px;
+    line-height: 128%;
+    letter-spacing: 1.8px;
+    padding-bottom: 20px;
+  }
+  .reserved {
+      size: 15;
+      letter-spacing: 1;
+      line-height: 1.2em;
+      align-items: center;
+  }
