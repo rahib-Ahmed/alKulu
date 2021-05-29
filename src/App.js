@@ -16,19 +16,21 @@ function App() {
        duration: 1200,
        easing : 'easeInOutSine'
     })
-    const [filess, setFiless] = React.useState(null) 
+    const [filess, setFiless] = React.useState() 
      
     var onFileChange = (event) =>{ 
-      console.log(event.target)
+      console.log(event.target.files[0].name)
       setFiless(event.target.files[0]); 
+    
     }; 
      
     // On file upload (click the upload button) 
    var onFileUpload = () => { 
      let param = new FormData()
+      
      param.append("imageData", filess)
      param.append("imageName", "cover-" + Date.now())
-     param.append("bookid", "2")
+     param.append("bookid", "7")
      param.append("title", "seeratSSS")
      param.append("author", "som1SS")
      param.append("coAuthor", "som2SS")
@@ -66,7 +68,7 @@ function App() {
       <div className="box">hello</div>
       <div className="box">hello</div> */}
   
-      <input type="file"  onChange={onFileChange} /> 
+      <input type="file" multiple accept="image/*" onChange={onFileChange} /> 
                 <button onClick={onFileUpload}> 
                   Upload! 
                 </button> 

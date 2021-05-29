@@ -11,7 +11,7 @@ import Dashboard from './adminPanel/Dashboard';
 ReactDOM.render(
   <Router history={BrowserRouter}>
     <Switch >
-      <Route path = {"/"} exact component = {Signup}/> 
+      <Route path = {"/"} exact component = {App}/> 
       <Route path = {"/Login"} exact component = {Adminlogin} />
       <Route path = {"/Dashboard"} exact component = {Dashboard} />
       </Switch>
