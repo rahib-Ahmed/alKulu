@@ -25,7 +25,8 @@
   background-color: rgb(157, 205, 200);
   height: 100vh;
   width: auto;
-  justify-content: space-between;
+  align-items: center;
+  
 }
 .dashHead{
   /* background-color: antiquewhite; */
@@ -33,6 +34,7 @@
  height: 15vh;
   flex-direction: row;
   align-items: center;
+  padding: 0px 25px 0px 25px;
   justify-content: space-evenly;
 }
 .text {
@@ -44,6 +46,11 @@
   letter-spacing: 1.1px;
   white-space: 'pre';
   font-weight: 700;
+}
+.somediv {
+display: flex;
+flex-direction: row;
+margin-top: 30px;
 }
 .footerB {
   display: flex;
@@ -62,12 +69,16 @@
   width: auto;
 }
 .iconTab{
+  flex: 1;
+  /* background-color: aliceblue; */
   display: flex;
-  height: 85vh;
+  flex-direction: column; 
+  height: auto;
   width: auto;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   align-items: flex-start;
-  flex-direction: column;  
+  justify-content: flex-start;
+   
 }
 .textIcon {
   width: auto; 
@@ -124,7 +135,6 @@
   padding: 15px;
   width: 50vw;
   margin-top: 10px;
-  
 }
 .inputText {
   width: auto; /* 62px */
@@ -156,8 +166,10 @@
 margin-left: 20px;
 }
 .oneFlex { 
+
+
   display: flex;
-  width: 10vw;
+  width: 12vw;
   justify-content: flex-end;
 }
 .twoFlex {
@@ -195,47 +207,188 @@ margin-left: 20px;
   box-shadow: 0px 0px 0px 0px;
   height: 15vh;
 }
+.TTX {
+  display: none;
+}
 .imgHead{
   margin-top: 20px;
 }
+.phnHead {
+  display: none;
+}
+.backArrow {
+  display: none;
+}
+.bellico {
+  display: none;
+}
+.alag{
+  margin-left: 0vw;
+}
 
  @media screen and (max-width: 769px) {
-  .inputText {
-display: none;
+
+  .inputFlex{
+    display: flex;
+    align-items: flex-start;
+    margin:0;
+
+  }
+  .alag {
+    margin: 0;
+  }
+  .oneFlex { 
+    /* background-color: black; */
+    display: flex;
+    width: 10vw;
+    margin: 0;
+    justify-content: flex-start;
   }
   .twoFlex {
+    /* background-color: black; */
     display: flex;
-    width: 40vw;
-    margin-left: 70px;
+    width: 100%;
+    margin: 0
    }
    .threeFlex {
+     /* background-color: black; */
+     margin:0;
     display: flex;
-    width: 20vw;
-    margin-left: 70px;
+    width: 100%;  
    }
-   .drawer {
+   .inputBook {
+    background-color: rgb(255, 255, 255);
+    color:rgb(51, 75, 73);
+    border: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    border-width: 1px;
+    caret-color: rgb(51, 51, 51);
+    width: 100%;
+    margin:0;
+    height: 10px;
+    margin-bottom: 14px;
+    margin-top: 8px;
+   }
+   .x {
+     margin-left: 5px;
      flex-direction: column;
-     width: 100vw;
-    height: 20vh;
-    justify-content: center;
+     align-items: flex-start;
+     width: 96%;
+     
+  }
+   .drawer {
+     background-color: rgb(157, 205, 200);
+     flex-direction: column;
+     width: auto;
+     padding: 0px 15px 0px 15px;
+    height: auto;
     align-items: center;
+    justify-content: flex-start;
+
    }
-   .container {
-      flex-direction: column;
-   }
+    .dashHead {
+      display: none;
+    }
    .header {
-     width: 100vw;
+     display: flex;
+     align-items: flex-end;
+     justify-content: space-between;
      height: 10vh;
-   }
+    background-color: rgb(157, 205, 200);
+  } 
+ 
+  .phnHead {
+    display: flex;
+    color: white;
+    align-items: center;
+    font-weight: 700;
+    font-size: 30px;
+    font-style: normal;
+    font-family: "Philosopher", serif;
+    line-height: 1.9;
+    letter-spacing: 0.8px;
+    white-space: 'pre';
+    margin-right: 25px;
+  }
+  .backArrow {
+    display: flex;
+    margin-top: auto;
+    margin-top: 4.8vh;
+  }
+ 
    .textIcon {
      display: none;
    }
-   .iconTab {
-     flex-direction: row;
-     align-items: center;
-   }
-   .footerB {
+   .text {
      display: none;
+   }
+   .threeBar {
+     display: none;
+   }
+   .bellico {
+     display: flex;
+   }
+   .footerB{
+     display: none;
+   }
+   .upload-books {
+    width: auto; /* 110px */
+    height: auto; /* 21px */
+    overflow: visible;
+    white-space: pre;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    font-weight: 700;
+    font-style: normal;
+    font-family: "Philosopher", serif;
+    color: #334B49;
+    font-size: 25px;
+    margin: 0
+ 
+   }
+   .addBook {
+    font-size: 1em;
+    padding: 6px 15px 6px 15px ;
+    margin: 0  
+   }
+   .section {
+     overflow-y: scroll;
+     height: 90vh;
+     padding-left: 15px;
+     padding-right: 20px;
+   }
+   .secHeader{
+     align-items: center;
+     justify-content: space-between;
+     margin: 0px;
+  
+   }
+   .inputText {
+     /* background-color: bisque; */
+    width: auto; /* 32px */
+    height: auto; /* 19px */
+    overflow: visible;
+    white-space: pre;
+    font-weight: 700;
+    font-style: normal;
+    font-family: "Philosopher", serif;
+    color: #334B49;
+    letter-spacing: 0px;
+    line-height: 1.2;
+    font-size: 16px;
+   }
+
+   .midSec {
+     flex: 1;
+     display: flex;
+     margin:0;
+     width: 100%;
+     /* background-color: aliceblue; */
+     align-items: flex-start;
+     justify-content: flex-start;
+   }
+   /* .footerB { */
+     /* display: none;
    }
    .threeBar {
      display: none;
@@ -261,6 +414,12 @@ display: none;
      width: auto;
     margin-left: 7px;
     justify-content: space-evenly;
-   }
+   }   */
+   .textColor{
+    display: none;
+     }
+     .TTX {
+       display: flex;
+     }
  }
 

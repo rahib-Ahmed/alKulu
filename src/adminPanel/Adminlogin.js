@@ -19,6 +19,8 @@ function Adminlogin() {
                 setError("This user does not exist")
             }
             else if (result.status === "Successfully Login"){
+                localStorage.setItem("name", result.res.name)
+                localStorage.setItem("email", result.res.email)
             history.push("/Dashboard")
         }
              else {

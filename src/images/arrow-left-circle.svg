@@ -8,8 +8,8 @@
     stroke-width="2"
     stroke-linecap="round"
     stroke-linejoin="round"
-    class="feather feather-camera">
-    <path
-        d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-    <circle cx="12" cy="13" r="4"></circle>
+    class="feather feather-arrow-left-circle">
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12 8 8 12 12 16"></polyline>
+    <line x1="16" y1="12" x2="8" y2="12"></line>
 </svg>

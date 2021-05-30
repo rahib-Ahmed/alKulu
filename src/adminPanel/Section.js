@@ -67,7 +67,7 @@ function Section() {
             </div>
         
                 <div className="midSec">
-                    <div className="row align-items-center">
+                    <div className="row x align-items-center">
                         <div className="inputText oneFlex">Title</div>
                         <div className="twoFlex">
                             <input
@@ -77,35 +77,32 @@ function Section() {
                                 className="inputBook"/>
                         </div>
                     </div>
-                    <div className="row align-items-center ">
+                    <div className="row x align-items-center">
+                        
                         <div className="inputText oneFlex">Author</div>
                         <div className="threeFlex">
                             <input
-                                style={{
-                                width: '20vw'
-                            }}
+                           
                                 onChange={handleChange}
                                 name="author"
                                 placeholder="Book author"
-                                className="inputBook"/>
+                                className="inputBook alag"/>
                         </div>
-                        <div
-                            style={{
-                            marginLeft: '5vw'
-                        }}
+                        
+                        
+                        <div               
                             className="inputText oneFlex">Co-Author</div>
                         <div className="threeFlex">
                             <input
-                                style={{
-                                width: '20vw'
-                            }}
+                             
                                 onChange={handleChange}
                                 name="coAuthor"
                                 placeholder="Book CoAuthor"
-                                className="inputBook"/>
+                                className="inputBook alag"/>
                         </div>
+                        
                     </div>
-                    <div className="row align-items-center">
+                    <div className="row  x align-items-center">
                         <div className="inputText oneFlex">Publisher</div>
                         <div className="twoFlex">
                             <input
@@ -115,14 +112,13 @@ function Section() {
                                 className="inputBook"/>
                         </div>
                     </div>
-                    <div className="row align-items-center">
+                    <div className="row x align-items-center">
                         <div className=" inputText oneFlex">Categories</div>
                         <div className="twoFlex">
                             <FormControl variant="outlined" className={classes.formControl}>
                                 <InputLabel>Category</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-filled-label"
-                                    id="demo-simple-select-filled"
+
                                     name="Categories"
                                     onChange={handleChange}>
                                     <MenuItem value={input}>
@@ -141,7 +137,7 @@ function Section() {
                         </div>
                     </div>
 
-                    <div className="row align-items-center">
+                    <div className="row x align-items-center">
                         <div className="inputText oneFlex">Languages</div>
                         <div className="twoFlex">
                             <input
@@ -152,35 +148,27 @@ function Section() {
                         </div>
                     </div>
 
-                    <div className="row align-items-center ">
+                    <div className="row  x align-items-center ">
                         <div className="inputText oneFlex">Pages</div>
                         <div className="threeFlex">
                             <input
-                                style={{
-                                width: '20vw'
-                            }}
                                 onChange={handleChange}
                                 name="Pages"
                                 placeholder="Book Pages"
-                                className="inputBook"/>
+                                className="inputBook alag"/>
                         </div>
                         <div
-                            style={{
-                            marginLeft: '5vw'
-                        }}
+                        
                             className="inputText oneFlex">Volumes</div>
                         <div className="threeFlex">
                             <input
-                                style={{
-                                width: '20vw'
-                            }}
                                 onChange={handleChange}
                                 name="Volumnes"
                                 placeholder="Book Volume"
-                                className="inputBook"/>
+                                className="inputBook alag"/>
                         </div>
                     </div>
-                    <div className="row align-items-center ">
+                    <div className="row x align-items-center ">
                         <div className="inputText oneFlex">Keywords</div>
                         <div className="twoFlex">
                             <input
@@ -190,7 +178,7 @@ function Section() {
                                 className="inputBook"/>
                         </div>
                     </div>
-                    <div className="row align-items-center ">
+                    <div className="row x align-items-center ">
                         <div className="inputText oneFlex">Image</div>
                         <div className="twoFlex">
                             <label>

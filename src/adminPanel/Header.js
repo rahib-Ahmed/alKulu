@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './dashboard.css';
 import {
     IconButton,
@@ -9,40 +9,51 @@ import {
 import {makeStyles} from '@material-ui/core/styles';
 import Bell from  '../images/bell.svg'
 import Logout from '../images/log-out.svg'
-
+import Divider from '@material-ui/core/Divider'
 const useStyles = makeStyles({
 
     
 });
-const useDrawer = makeStyles({
-    drawer: {
-        width: '240',
-        flexShrink: 0,
-        whiteSpace: 'nowrap'
-    }
-})
+
 
 function Header() {
+const [respect, setRespect] = React.useState("")
+useEffect(()=>{
+    
+        const date = new Date()
+        console.log(date.getHours())
+        if(date.getHours() >= 6 && date.getHours() < 12) 
+        {
+            setRespect("Good Morning ")
+        } else if(date.getHours() >= 12 && date.getHours() < 18) 
+        {
+            setRespect("Good Afternoon ")
+        }  else if(date.getHours() >= 18 && date.getHours() <= 21) 
+        {
+            setRespect("Good Evening ")
+        }
+    
+}, [])
+    
+
     const classes = useStyles()
-    const drawer = useDrawer()
+  
 return (
 <>
 <div className="header">
-<Toolbar>
-    <div className="textColor">Good Evenning Oreo</div>
-</Toolbar>
+    <div className="TTX" >
 
-<Toolbar className={classes.endIcon}>
-    <IconButton
-      >
-        <img className="imgHead" src={Bell}></img>
-    </IconButton>
+    </div>
+<Toolbar>
+    <div className="textColor">{respect}Oreo</div>
+    <div className="phnHead">Dashboard</div>
+</Toolbar>
     <IconButton
       >
         <img className="imgHead" src={Logout}></img>
     </IconButton>
-</Toolbar>
 </div>
+
 </>
 )
 }
