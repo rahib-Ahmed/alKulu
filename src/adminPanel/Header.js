@@ -28,7 +28,7 @@ useEffect(()=>{
         } else if(date.getHours() >= 12 && date.getHours() < 18) 
         {
             setRespect("Good Afternoon ")
-        }  else if(date.getHours() >= 18 && date.getHours() <= 21) 
+        }  else if(date.getHours() >= 18 && date.getHours() <= 24) 
         {
             setRespect("Good Evening ")
         }
@@ -52,8 +52,11 @@ return (
       >
         <img className="imgHead" src={Logout}></img>
     </IconButton>
+ 
 </div>
+<div className="borderHeader">
 
+</div>
 </>
 )
 }

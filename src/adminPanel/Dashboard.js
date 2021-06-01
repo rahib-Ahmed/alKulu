@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './dashboard.css';
-
+import * as req from '../backend/adminBackend';
 import Header from './Header';
 import Section from './Section';
 import './dashboard.css';
@@ -13,10 +13,13 @@ import Fileadd from '../images/file-plus.svg';
 import Sectionqr from './Sectionqr';
 import Sectiontable from './Sectiontable';
 import Back from '../images/arrow-left-circle.svg'
-import Bell from '../images/bell.svg'
+import Sectionmanager from './Sectionmanager';
 function Dashboard() {
-    const [section, setSection] = React.useState(0)
-    return (
+const [section, setSection] = React.useState(0)
+
+
+
+return (
         <div className="container">
            <div className="drawer">
            
@@ -86,7 +89,9 @@ function Dashboard() {
                  <Sectionqr /> : 
                  section === 2? 
                  <Sectiontable />  :
-                  " "    
+                  section === 3? 
+                  <Sectionmanager /> 
+                  : " "
 
             }
                 </div>

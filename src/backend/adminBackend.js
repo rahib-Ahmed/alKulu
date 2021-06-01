@@ -6,17 +6,11 @@ async function fetchs(endpoint, req) {
 }
 
 export async function fetchAdmins(obj, type ) {
-    console.log(obj.file[0])
+    if(type===2){
     var formData = new FormData()
     for (let i = 0; i < obj.file.length; i++) {
         formData.append(`imageData`, obj.file[i])
     }
-    console.log(obj.file)
-    var params = new URLSearchParams();
-    params.append("email", obj.email);
-    params.append("password", obj.password);
-    params.append("name", obj.name);
-
     formData.append("title", obj.data.title)
     formData.append("author", obj.data.author)
     formData.append("categories", obj.data.categories)
@@ -28,7 +22,14 @@ export async function fetchAdmins(obj, type ) {
     
     formData.append("imageName", "cover-" + Date.now())
     formData.append("bookid", 9)
-
+}
+   
+    var params = new URLSearchParams();
+    params.append("email", obj.email);
+    params.append("password", obj.password);
+    params.append("name", obj.name);
+    params.append("bookid", obj.id)
+    
     var header = new Headers()
     header.append("Content-Type", "application/x-www-form-urlencoded")
     
@@ -53,6 +54,12 @@ export async function fetchAdmins(obj, type ) {
     }
     else if(type === 2) {
         var x = await fetchs('book/uploadmulter', req1)
+        return x.json()
+    }  else if(type === 3) {
+        var x = await fetchs('book/getQR', req)
+        return x.json()
+    } else if(type === 4) {
+        var x = await fetchs('book/getBookdata', req)
         return x.json()
     }
 
