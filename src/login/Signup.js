@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './login.css';
 import { useHistory,useLocation } from "react-router-dom";
 import * as req from '../backend/adminBackend'
@@ -12,6 +12,16 @@ function Signup() {
     var [mailerr,setMailerr]=React.useState('')
     var [namerr,setNamerr]=React.useState('')
     var [passerr,setPasserr]=React.useState('')
+    
+    useEffect(()=>{
+        var chk = localStorage.getItem("nameSign")
+        if(chk === null) {
+
+        } else {
+            history.push("/LoginAdmin")
+        }
+    }, [])
+
     function validator() {
         var mail= "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
         var pass="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
@@ -31,6 +41,7 @@ function Signup() {
         var result = await req.fetchAdmins(obj, 1) 
         // console.log(result)
         if(result.status === "Added Successfully") {
+            localStorage.setItem("nameSign", name)
             setError("User Added Successfully")
             history.push("/LoginAdmin")
         }
@@ -60,7 +71,7 @@ function Signup() {
                 <div className="minuteFlex">
                 
                     <button  value="Signup" className="button" onClick={()=>submitDetails()}>Signup</button>
-                    <text className="textColor admin">Click here for Administrative <u onClick={()=>{history.push("/Login")}}>Login</u></text>
+                    <text className="textColor admin">Click here for Administrative <u onClick={()=>{history.push("/LoginAdmin")}}>Login</u></text>
                     <div className="error">{error}</div>
                 </div>
                 <div className="reservedFlex">
