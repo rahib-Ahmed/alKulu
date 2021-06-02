@@ -71,7 +71,7 @@ function Section() {
             bookid: bookid
         }
         var result = "Book added Successfully"
-        // var result = await req.fetchAdmins(obj, 2)
+        var result = await req.fetchAdmins(obj, 2)
         // console.log(result)
         if(result === "Book added Successfully") {
             setInput()
@@ -193,6 +193,7 @@ function Section() {
                         <div className="inputText oneFlex">Pages</div>
                         <div className="threeFlex">
                             <input
+                            type="number"
                             onBlur={(e)=>validator(e)}
                                 onChange={handleChange}
                                 name="Pages"
@@ -204,7 +205,8 @@ function Section() {
                             className="inputText oneFlex">Volumes</div>
                         <div className="threeFlex">
                             <input
-                            onBlur={(e)=>validator(e)}
+                                type="number"
+                                onBlur={(e)=>validator(e)}
                                 onChange={handleChange}
                                 name="Volumes"
                                 placeholder="Book Volume"

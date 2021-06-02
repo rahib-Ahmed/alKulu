@@ -47,12 +47,7 @@ return (
                 </div>
                 
                 <div className="iconTab">
-                {/* <div
-                        onClick={()=>{setSection(0)}}
-                    >
-                        <img className="backArrow" src={Back}></img>
-                      
-                    </div> */}
+               
                     <div className="somediv"
                         onClick={()=>{setSection(0)}}
                     >

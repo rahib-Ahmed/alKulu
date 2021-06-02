@@ -60,7 +60,7 @@
   font-weight: 700;
 }
 .iconTab {
-  margin-top: 8vh;
+  /* margin-top: 8vh; */
 }
 .somediv {
 display: flex;
@@ -420,7 +420,9 @@ margin-left: 20px;
      height: 31%;
      width: 90%;
    }
- 
+   .iconTab {
+    margin-top: 8vh;
+  }
    .modalText {
      font-size: 21px;
      margin-left: 0;

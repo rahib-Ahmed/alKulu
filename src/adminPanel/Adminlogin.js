@@ -38,7 +38,7 @@ function Adminlogin() {
                 </div>
                 <div className="minorFlex">
                     <input value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" className="inputField"/>
-                    <input value={password} onChange={(e)=>{setPassword(e.target.value)}} className="inputField" placeholder="Password"/>
+                    <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} className="inputField" placeholder="Password"/>
                 </div>
                 <div className="minuteFlex">
                     <button onClick={()=>submit()} className="button" >Login</button>
