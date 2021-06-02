@@ -5,25 +5,39 @@ import * as req from '../backend/adminBackend'
 
 function Signup() {
     const history = useHistory()
-    const [email, setEmail] = React.useState()
-    const [name, setName] = React.useState()
-    const [password,setPassword] = React.useState()
-    const [error, setError] = React.useState()
+    const [email, setEmail] = React.useState('')
+    const [name, setName] = React.useState('')
+    const [password,setPassword] = React.useState('')
+    const [error, setError] = React.useState('')
+    var [mailerr,setMailerr]=React.useState('')
+    var [namerr,setNamerr]=React.useState('')
+    var [passerr,setPasserr]=React.useState('')
+    function validator() {
+        var mail= "^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$";
+        var pass="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
+        !email.match(mail)? setMailerr('Please enter a valid mail!') : setMailerr('');
+        name ===''? setNamerr('Please enter a UserName!') : setNamerr('');
+        !password.match(pass)? setPasserr('Password should contain special characters, capital letters and numbers!') : setPasserr('');
+      }
+  
     async function submitDetails() {
+       if(mailerr === '' || passerr === '' || namerr === ''){
+
         const obj = {
             email: email,
             password: password,
             name: name
         }
         var result = await req.fetchAdmins(obj, 1) 
-        console.log(result)
-        if(result === "Added Successfully") {
-            setError("UserAddedSuccessfully")
+        // console.log(result)
+        if(result.status === "Added Successfully") {
+            setError("User Added Successfully")
+            history.push("/LoginAdmin")
         }
         else {
             setError("User Already Exist")
         }
-        
+        }
     }
     return (
         <div className="i-phone-12">
@@ -36,14 +50,18 @@ function Signup() {
                     </svg>
                 </div>
                 <div className="minorFlex">
-                    <input value={email} onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" className="inputField"/>
-                    <input value={name} onChange={(e)=>{setName(e.target.value)}} className="inputField" placeholder="Username"/>
-                    <input value={password} onChange={(e)=>{setPassword(e.target.value)}} className="inputField" placeholder="Password"/>
+                    <input value={email} onBlur={()=>validator()} required onChange={(e)=>{setEmail(e.target.value)}} placeholder="Email" className="inputField"/>
+                    <div className="error">{mailerr}</div>
+                    <input  value={name} onBlur={()=>validator()} required onChange={(e)=>{setName(e.target.value)}} className="inputField" placeholder="Username"/>
+                    <div className="error">{namerr}</div>
+                    <input  type="password" value={password} onBlur={()=>validator()} required onChange={(e)=>{setPassword(e.target.value)}} className="inputField" placeholder="Password"/>
+                    <div className="error">{passerr}</div>
                 </div>
                 <div className="minuteFlex">
+                
                     <button  value="Signup" className="button" onClick={()=>submitDetails()}>Signup</button>
                     <text className="textColor admin">Click here for Administrative <u onClick={()=>{history.push("/Login")}}>Login</u></text>
-                    <div>{error}</div>
+                    <div className="error">{error}</div>
                 </div>
                 <div className="reservedFlex">
                     <text className="reserved textColor">All Right Reserved 2021</text>

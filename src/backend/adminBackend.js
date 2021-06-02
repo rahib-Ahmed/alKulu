@@ -1,6 +1,6 @@
 async function fetchs(endpoint, req) {
     var end;
-    await fetch(`http://localhost:3001/${endpoint}`, req)
+    await fetch(`https://alkulu.herokuapp.com/${endpoint}`, req)
     .then(async (result) => end = result)
     return end
 }
@@ -13,15 +13,15 @@ export async function fetchAdmins(obj, type ) {
     }
     formData.append("title", obj.data.title)
     formData.append("author", obj.data.author)
-    formData.append("categories", obj.data.categories)
+    formData.append("categories", obj.data.Categories)
     formData.append("coAuthor", obj.data.coAuthor)
     formData.append("language", obj.data.language)
-    formData.append("pages", obj.data.pages)
-    formData.append("volume", obj.data.volume)
+    formData.append("pages", obj.data.Pages)
+    formData.append("volume", obj.data.Volumes)
     formData.append("keywords", obj.data.keywords)
-    
     formData.append("imageName", "cover-" + Date.now())
-    formData.append("bookid", 9)
+    formData.append("bookid", obj.bookid)
+    formData.append("publisher", obj.data.Publisher)
 }
    
     var params = new URLSearchParams();

@@ -41,7 +41,7 @@ function Sectiontable() {
           databig[i].language,
           databig[i].publisher,
           databig[i].pages,
-          databig[i].Volume,
+          databig[i].volume,
           databig[i].categories,
           databig[i].keywords
         ])

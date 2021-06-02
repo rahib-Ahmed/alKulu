@@ -3,13 +3,11 @@ import './dashboard.css';
 import {
     IconButton,
     Toolbar,
-    Typography,
  
 } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
-import Bell from  '../images/bell.svg'
 import Logout from '../images/log-out.svg'
-import Divider from '@material-ui/core/Divider'
+
 const useStyles = makeStyles({
 
     
@@ -19,9 +17,9 @@ const useStyles = makeStyles({
 function Header() {
 const [respect, setRespect] = React.useState("")
 useEffect(()=>{
-    
+        
         const date = new Date()
-        console.log(date.getHours())
+        // console.log(date.getHours())
         if(date.getHours() >= 6 && date.getHours() < 12) 
         {
             setRespect("Good Morning ")
@@ -34,7 +32,7 @@ useEffect(()=>{
         }
     
 }, [])
-    
+var name = localStorage.getItem("name")
 
     const classes = useStyles()
   
@@ -45,12 +43,12 @@ return (
 
     </div>
 <Toolbar>
-    <div className="textColor">{respect}Oreo</div>
+    <div className="textColor">{respect} {name}</div>
     <div className="phnHead">Dashboard</div>
 </Toolbar>
     <IconButton
       >
-        <img className="imgHead" src={Logout}></img>
+        <img  className="imgHead" src={Logout}></img>
     </IconButton>
  
 </div>

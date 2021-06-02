@@ -14,9 +14,17 @@ import Sectionqr from './Sectionqr';
 import Sectiontable from './Sectiontable';
 import Back from '../images/arrow-left-circle.svg'
 import Sectionmanager from './Sectionmanager';
+import { useLocation } from 'react-router';
 function Dashboard() {
 const [section, setSection] = React.useState(0)
+const location = useLocation()
+useEffect(()=>{
 
+    if(localStorage.getItem("first") === "false") {
+    setSection(1)
+  }
+  localStorage.setItem("first", true)
+}, [location])
 
 
 return (
@@ -39,12 +47,12 @@ return (
                 </div>
                 
                 <div className="iconTab">
-                <div
+                {/* <div
                         onClick={()=>{setSection(0)}}
                     >
                         <img className="backArrow" src={Back}></img>
                       
-                    </div>
+                    </div> */}
                     <div className="somediv"
                         onClick={()=>{setSection(0)}}
                     >
@@ -86,7 +94,7 @@ return (
                 <Header/>{section===0?
                 <Section/> : 
                 section === 1?
-                 <Sectionqr /> : 
+                 <Sectionqr  /> : 
                  section === 2? 
                  <Sectiontable />  :
                   section === 3? 

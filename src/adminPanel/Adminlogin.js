@@ -14,16 +14,15 @@ function Adminlogin() {
             password: password
         }
        var result = await req.fetchAdmins(obj, 0)
-            console.log(result)
+            // console.log(result)
             if(result.status === "User not exist") {
                 setError("This user does not exist")
             }
-            else if (result.status === "Successfully Login"){
+            else if (result.res.admin === true){
                 localStorage.setItem("name", result.res.name)
-                localStorage.setItem("email", result.res.email)
-            history.push("/Dashboard")
+               return history.push("/Dashboard")
         }
-             else {
+             else if(result.status === "Unauthorized access" ){
                  setError("Unauthorized access")
              }
     }
@@ -43,7 +42,7 @@ function Adminlogin() {
                 </div>
                 <div className="minuteFlex">
                     <button onClick={()=>submit()} className="button" >Login</button>
-                    <div>{error}</div>
+                    <div className="error">{error}</div>
                 </div>
                 <div className="reservedFlex">
                     <text className="reserved textColor">All Right Reserved 2021</text>
