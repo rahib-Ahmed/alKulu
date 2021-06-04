@@ -93,6 +93,38 @@ margin-top: 30px;
   width: auto;
 
 }
+.paper1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(226, 238, 232);
+  width: 40%;
+  height: 60vh;
+  border-radius: 21px;
+}
+.imgQR {
+  width: 17.5vw;
+  height: 35vh;
+}
+.headerModalQR {
+  /* background-color: aliceblue; */
+  display: flex;
+  margin-top: 40px;
+  flex-direction: row;
+  width: 90%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.headerModalQR2 {
+  /* background-color: aqua; */
+  display: flex;
+  flex-direction: row;
+  width: 10vw;
+  align-items: flex-start;
+  justify-content: space-evenly;
+}
 .iconTab{
   flex: 1;
   /* background-color: aliceblue; */
@@ -103,6 +135,17 @@ margin-top: 30px;
   /* margin-left: 10px; */
   align-items: flex-start;
   justify-content: flex-start; 
+}
+.scannedQR {
+  /* background-color: aqua;   */
+  display: flex;
+  margin-top: 20px;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: space-evenly; */
+
 }
 .borderHeader {
   border-bottom: 1px solid rgb(157,205,200);
@@ -268,8 +311,12 @@ margin-left: 20px;
   align-items: center;
   justify-content: center;
 }
+.midsec3 {
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+}
 .bottomButton {
-
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -321,6 +368,16 @@ margin-left: 20px;
   font-size: 1.3em;
   padding: 13px 15px 13px 15px ;
   color: rgb(255, 255, 255);
+}
+.getQRtable {
+  font-family: "Philosopher", serif;
+  font-weight: lighter;
+  background-color: rgb(51, 75, 73);
+  border-radius: 13px;
+  font-size: 1.3em;
+  padding: 5px 10px 5px 10px ;
+  color: rgb(255, 255, 255);
+  width: 6vw;
 }
 .imageQR {
   height: 359px;
@@ -404,11 +461,20 @@ margin-left: 20px;
     margin: 0;
     justify-content: flex-start;
   }
+  .paper1 {
+    width: 90%;
+    height: 50%;
+  }
   .twoFlex {
     /* background-color: black; */
     display: flex;
     width: 100%;
     margin: 0
+   }
+   .imgQR {
+     margin: 0;
+     width: 50%;
+     height: 50%;
    }
    .threeFlex {
      /* background-color: black; */
@@ -429,8 +495,14 @@ margin-left: 20px;
    }
    .modalID {
     margin-left: -8px;
-    
     font-size: 17px;
+  }
+  .getQRtable {
+    border-radius: 13px;
+    font-size: 1em;
+    padding: 5px 25px 5px 25px ;
+    color: rgb(255, 255, 255);
+    width: 16vw;
   }
    .modalButton1 {
      padding: 5px 10px 5px 10px

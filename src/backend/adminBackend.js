@@ -1,11 +1,16 @@
 async function fetchs(endpoint, req) {
     var end;
-    await fetch(`https://alkulu.herokuapp.com/${endpoint}`, req)
+    // https://alkulu.herokuapp.com/
+    // http://localhost:3001/
+    await fetch(`http://localhost:3001/${endpoint}`, req)
     .then(async (result) => end = result)
     return end
 }
 
 export async function fetchAdmins(obj, type ) {
+    var myHeader = new Headers()
+    myHeader.append('authorization', `Bearer ${obj}`);
+
     if(type===2){
     var formData = new FormData()
     for (let i = 0; i < obj.file.length; i++) {
@@ -29,7 +34,9 @@ export async function fetchAdmins(obj, type ) {
     params.append("password", obj.password);
     params.append("name", obj.name);
     params.append("bookid", obj.id)
-    
+    params.append("deleteid", obj.deleteid)
+    params.append("type", obj.type)
+    params.append("token", obj)
     var header = new Headers()
     header.append("Content-Type", "application/x-www-form-urlencoded")
     
@@ -42,6 +49,11 @@ export async function fetchAdmins(obj, type ) {
         method: 'POST',
         header: header,
         body: formData,
+    }
+    const req2 = {
+        method: 'POST',
+        headers: myHeader,
+        body: {}
     }
     
     if(type === 0) {
@@ -61,6 +73,15 @@ export async function fetchAdmins(obj, type ) {
     } else if(type === 4) {
         var x = await fetchs('book/getBookdata', req)
         return x.json()
-    }
+    } else if(type === 5) {
+        var x =  await fetchs('book/action', req)
+        return x.json()
+    } else if(type === 6) {
+        var x = await fetchs('users/checkAdmin', req2)
+        return x.json()
+    } else if(type === 7) {
+        var x = await fetchs('users/refresh', req)
+        return x.json()
+    } 
 
 }

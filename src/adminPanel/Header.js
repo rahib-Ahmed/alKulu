@@ -7,6 +7,8 @@ import {
 } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import Logout from '../images/log-out.svg'
+import Cookies from 'js-cookie';
+import { useHistory } from 'react-router';
 
 const useStyles = makeStyles({
 
@@ -15,7 +17,9 @@ const useStyles = makeStyles({
 
 
 function Header() {
+    
 const [respect, setRespect] = React.useState("")
+const history = useHistory()
 useEffect(()=>{
         
         const date = new Date()
@@ -32,8 +36,13 @@ useEffect(()=>{
         }
     
 }, [])
-var name = localStorage.getItem("name")
 
+var name = localStorage.getItem("name")
+function logout() {
+    Cookies.set("access", '')
+    Cookies.set("refresh", '')
+    history.push("/")
+}
     const classes = useStyles()
   
 return (
@@ -48,7 +57,7 @@ return (
 </Toolbar>
     <IconButton
       >
-        <img  className="imgHead" src={Logout}></img>
+        <img onClick={()=>{logout()}} className="imgHead" src={Logout}></img>
     </IconButton>
  
 </div>

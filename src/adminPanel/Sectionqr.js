@@ -43,7 +43,8 @@ iframe.addEventListener('load', function() {
                 // Invoke the print when the image is ready
                 iframe.contentWindow.print();
             });
-        });}
+        })
+    }
     async function getQR() {
         const obj = {
             id: id

@@ -22,8 +22,11 @@ useEffect(()=>{
 
     if(localStorage.getItem("first") === "false") {
     setSection(1)
+  } else if(localStorage.getItem("second") === "true") {
+      setSection(2)
   }
   localStorage.setItem("first", true)
+  localStorage.setItem("second", false)
 }, [location])
 
 

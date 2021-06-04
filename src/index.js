@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Route , BrowserRouter, Switch, useLocation } f
 import Signup from './login/Signup'
 import Adminlogin from './adminPanel/Adminlogin';
 import Dashboard from './adminPanel/Dashboard';
+import Indexbooks from './book/Specbook';
 ReactDOM.render(
   <Router history={BrowserRouter}>
     <Switch >
-      <Route path = {"/"} exact component = {Signup} /> 
-      <Route path = {"/LoginAdmin"} exact component = {Adminlogin} />
-      <Route path = {"/Dashboard"} exact component = {Dashboard} />
+      <Route path = {"/"} exact component = {Adminlogin} /> 
+      <Route path = {"/Signup"} exact component = {Signup} />
+      <Route path= {"/Dashboard"} exact component = {Dashboard} />
+      <Route path= {"/IndexBook"} exact component = {Indexbooks} />
       </Switch>
   </Router>,
   document.getElementById('root')

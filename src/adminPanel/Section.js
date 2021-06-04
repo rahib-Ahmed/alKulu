@@ -12,14 +12,19 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Check from '../images/check.svg';
 import { useHistory } from "react-router-dom";
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme)=>({
     formControl: {
         backgroundColor: 'rgb(255, 255, 255)',
         width: '20vw'
-    }
-});
+    },
+     backdropss: {
+          zIndex: theme.zIndex.drawer + 1,
+          color: '#fff',
+        },
+
+}));
 
 function Section() {
 
@@ -32,8 +37,9 @@ function Section() {
     const [bkid, setBkid] = React.useState()    
     const [length, setLength] = React.useState()
     const [error, setError] = React.useState('')
-        const history = useHistory()
-  const handleClose = () => {
+    const [openback, setOpenback] = React.useState(false)
+    const history = useHistory()
+    const handleClose = () => {
     setOpen(false);
     window.location.replace("/Dashboard")
   };
@@ -46,11 +52,11 @@ function Section() {
         })
     }
     function validator(event) {
-        if(event.target.value === '') {
-            setError("Empty Fields")
-        } else setError('Completed')
+        
     }
-    
+    const handleCloseBack = () =>{
+        setOpenback(false)
+    }
     const handleFile = (event) => {
 
         for (var i = 0; i < event.target.files.length; i++) {
@@ -61,7 +67,17 @@ function Section() {
     }
 
     async function submit() {
-        if(error==='Completed'){
+
+            if(input.Pages === "" || input.Publisher === "" || input.Volumes === "" || input.author === ""
+            || input.language === "" || input.keywords === "" || input.coAuthor === "" || filenu === undefined) {
+                alert("Input Fields Empty")
+                setError("Input Fields Empty")
+            }        
+       
+        else {
+            
+            setOpenback(true)
+            setError("")
         var bookid = Math.floor(Math.random() * 1000) + 1
         setBkid(bookid)
         // console.log(input)
@@ -70,20 +86,18 @@ function Section() {
             file: filenu,
             bookid: bookid
         }
-        var result = "Book added Successfully"
+        
         var result = await req.fetchAdmins(obj, 2)
         // console.log(result)
-        if(result === "Book added Successfully") {
-            setInput()
+        if(result.status === "Book added Successfully") {
+            setOpenback(false)
             setOpen(true)
             localStorage.setItem("currentID", bookid)
         }
-} else {
-    alert("Empty Fields or No image selected")
-}
+} 
     }
     function directToQR() {
-        console.log("hjere")
+        // console.log("hjere")
         localStorage.setItem("first", false)
         history.push({pathname: "/Dashboard", state: {type: 1, bkid}})
     }
@@ -158,9 +172,9 @@ function Section() {
                             <FormControl variant="outlined" className={classes.formControl}>
                                 <InputLabel>Category</InputLabel>
                                 <Select
-
                                     name="Categories"
                                     onChange={handleChange}>
+                                        
                                     <MenuItem onBlur={(e)=>validator(e)} value={input}>
                                         <em>None</em>
                                     </MenuItem>
@@ -255,8 +269,6 @@ function Section() {
       
         </div>
         <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
         className="modal"
         open={open}
         onClose={handleClose}
@@ -283,7 +295,9 @@ function Section() {
           </div>
         </Fade>
       </Modal>
-
+      <Backdrop className={classes.backdropss} open={openback} onClick={handleCloseBack}> 
+      <CircularProgress color="inherit" />
+      </Backdrop>
         </>
     )
 }

@@ -14,12 +14,7 @@ function Signup() {
     var [passerr,setPasserr]=React.useState('')
     
     useEffect(()=>{
-        var chk = localStorage.getItem("nameSign")
-        if(chk === null) {
-
-        } else {
-            history.push("/LoginAdmin")
-        }
+      
     }, [])
 
     function validator() {
@@ -43,7 +38,7 @@ function Signup() {
         if(result.status === "Added Successfully") {
             localStorage.setItem("nameSign", name)
             setError("User Added Successfully")
-            history.push("/LoginAdmin")
+            history.push("/")
         }
         else {
             setError("User Already Exist")
@@ -71,7 +66,7 @@ function Signup() {
                 <div className="minuteFlex">
                 
                     <button  value="Signup" className="button" onClick={()=>submitDetails()}>Signup</button>
-                    <text className="textColor admin">Click here for Administrative <u onClick={()=>{history.push("/LoginAdmin")}}>Login</u></text>
+                    <text className="textColor admin">Click here for Administrative <u onClick={()=>{history.push("/")}}>Login</u></text>
                     <div className="error">{error}</div>
                 </div>
                 <div className="reservedFlex">
