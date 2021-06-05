@@ -28,7 +28,7 @@ export async function fetchAdmins(obj, type ) {
     formData.append("bookid", obj.bookid)
     formData.append("publisher", obj.data.Publisher)
 }
-   
+   console.log(obj.email)
     var params = new URLSearchParams();
     params.append("email", obj.email);
     params.append("password", obj.password);

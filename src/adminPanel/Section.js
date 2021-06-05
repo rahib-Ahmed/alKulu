@@ -13,7 +13,7 @@ import Fade from '@material-ui/core/Fade';
 import Check from '../images/check.svg';
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import Plus from '../images/plus-circle.svg'
 const useStyles = makeStyles((theme)=>({
     formControl: {
         backgroundColor: 'rgb(255, 255, 255)',
@@ -39,17 +39,20 @@ function Section() {
     const [error, setError] = React.useState('')
     const [openback, setOpenback] = React.useState(false)
     const history = useHistory()
+    const [newcat, setNewcat] = React.useState()
+    const [cat,setCat] = React.useState(["None","Hadees","Seerat","Treekh","Sawaneh","Fiqah", "Tasawwuf", "Bayanat wa khitabat", "Radd firqa w batila"]);
+
     const handleClose = () => {
     setOpen(false);
     window.location.replace("/Dashboard")
   };
-
     var imageData = []
     const handleChange = (event) => {
         setInput({
             ...input,
             [event.target.name]: event.target.value
         })
+     
     }
     function validator(event) {
         
@@ -65,9 +68,13 @@ function Section() {
         setFilenu(imageData)
         setLength(event.nativeEvent.target.files.length)
     }
+    var pushCatchange = (event) => {
+        setNewcat(event.target.value)
+
+    }
 
     async function submit() {
-
+        
             if(input.Pages === "" || input.Publisher === "" || input.Volumes === "" || input.author === ""
             || input.language === "" || input.keywords === "" || input.coAuthor === "" || filenu === undefined) {
                 alert("Input Fields Empty")
@@ -86,7 +93,6 @@ function Section() {
             file: filenu,
             bookid: bookid
         }
-        
         var result = await req.fetchAdmins(obj, 2)
         // console.log(result)
         if(result.status === "Book added Successfully") {
@@ -95,6 +101,10 @@ function Section() {
             localStorage.setItem("currentID", bookid)
         }
 } 
+    }
+    function pushCat() {
+        cat.push(newcat)
+        setNewcat('')
     }
     function directToQR() {
         // console.log("hjere")
@@ -174,20 +184,16 @@ function Section() {
                                 <Select
                                     name="Categories"
                                     onChange={handleChange}>
+                                    {cat.map((item)=>{
                                         
-                                    <MenuItem onBlur={(e)=>validator(e)} value={input}>
-                                        <em>None</em>
-                                    </MenuItem>
-                                    <MenuItem value={"Hadees"}>Hadees</MenuItem>
-                                    <MenuItem value={"Seerat"}>Seerat</MenuItem>
-                                    <MenuItem value={"Treekh"}>Treekh</MenuItem>
-                                    <MenuItem value={"Sawaneh"}>Sawaneh</MenuItem>
-                                    <MenuItem value={"Fiqah"}>Fiqah</MenuItem>
-                                    <MenuItem value={"Tasawwuf"}>Tasawwuf</MenuItem>
-                                    <MenuItem value={"Radd firqa w batila"}>Radd firqa w batila</MenuItem>
-                                    <MenuItem value={"Bayanat wa khitabat"}>Bayanat wa khitabat</MenuItem>
+                                        return (
+                                            <MenuItem onBlur={(e)=>validator(e)} value={item}>{item}</MenuItem>
+                                        )
+                                    })}  
                                 </Select>
                             </FormControl>
+                            <input value={newcat} className="inputBook" style={{marginLeft: '20px'}} type="text" name="CategAdd" onChange={pushCatchange} />
+                            <img onClick={()=>{pushCat()}} style={{marginLeft: '20px', marginTop: '10px'}} src={Plus}></img>  
                         </div>
                     </div>
 

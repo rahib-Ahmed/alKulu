@@ -6,11 +6,11 @@ import Cookies from 'js-cookie'
 function Adminlogin() {
 
     const [email,
-        setEmail] = React.useState()
+        setEmail] = React.useState('')
     const [password,
-        setPassword] = React.useState()
+        setPassword] = React.useState('')
     const [error,
-        setError] = React.useState()
+        setError] = React.useState('')
     const history = useHistory()
 
     
@@ -22,52 +22,68 @@ function Adminlogin() {
 
          console.log(accessToken)
 
-        if (refreshToken === undefined) {} 
+        if (refreshToken === undefined) {}
         if(accessToken != undefined) {
             var res = await req.fetchAdmins(accessToken, 6) //auth verify accesstoken! -> dashboard -> refresh! 
-                if(res.status === "Login again") 
+                if(res.status === "Unauthorized") 
                 {  
                     if(refreshToken != undefined){
                             var result = await req.fetchAdmins(refreshToken, 7)
                             Cookies.set("access", result.token)
                             history.push("/Dashboard")
                         }
+                         else {
+                            return null
+                        }
                   
                 } else {
                     if(res.status === "isAdmin") {
                         history.push("/Dashboard")
-                    } else {
+                    } else if(res.status === "notAdmin"){
                                 history.push("/IndexBook")        
                     }
                 }
 
         } else {
-                
+                return null
         }
     }, [])
+    const handleChangeEmail = (event) =>{
+        setEmail(event.target.value)
+    }
 
+    const handleChangePass = (event) =>{
+        setPassword(event.target.value)
+    }
+ 
     async function submit() {
        
         const obj = {
             email: email,
             password: password
         }
+        console.log(obj)
         var result = await req.fetchAdmins(obj, 0)
         // console.log(result)
         if (result.status === "User not exist") {
+            console.log("insdoe not exist")
             setError("This user does not exist")
         } else if (result.status === "Wrong email or password") {
+            console.log("insdoe no paswrd")
             setError("Wrong email or Password")
-        } else {
+        } else if(result.status === "login") {
+            console.log("onside good")
             Cookies.set("refresh", result.res.refresh)
             Cookies.set("access", result.res.access)
+            if(Cookies.get("access" === undefined)) {
             localStorage.setItem("name", result.res.name)
             var result = await req.fetchAdmins(result.res.access, 6)
             if(result.status === "isAdmin") {
                 history.push("/Dashboard")
-            } else {
+            } else if(result.status === "notAdmin") {
                 history.push("/IndexBook")
             }
+        }
         }
     }
     return (
@@ -83,22 +99,18 @@ function Adminlogin() {
                 <div className="minorFlex">
                     <input
                         value={email}
-                        onChange={(e) => {
-                        setEmail(e.target.value)
-                    }}
+                        onChange={handleChangeEmail}
                         placeholder="Email"
                         className="inputField"/>
                     <input
                         type="password"
                         value={password}
-                        onChange={(e) => {
-                        setPassword(e.target.value)
-                    }}
+                        onChange={handleChangePass}
                         className="inputField"
                         placeholder="Password"/>
                 </div>
                 <div className="minuteFlex">
-                    <button onClick={() => submit()} className="button">Login</button>
+                    <button onClick={() => {submit()}} className="button">Login</button>
                     <div className="error">{error}</div>
                 </div>
                 <div className="reservedFlex">
