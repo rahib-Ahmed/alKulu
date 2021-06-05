@@ -28,7 +28,7 @@ export async function fetchAdmins(obj, type ) {
     formData.append("bookid", obj.bookid)
     formData.append("publisher", obj.data.Publisher)
 }
-   console.log(obj.email)
+//    console.log(obj.email)
     var params = new URLSearchParams();
     params.append("email", obj.email);
     params.append("password", obj.password);
@@ -37,6 +37,7 @@ export async function fetchAdmins(obj, type ) {
     params.append("deleteid", obj.deleteid)
     params.append("type", obj.type)
     params.append("token", obj)
+    params.append("qrbookid", obj)
     var header = new Headers()
     header.append("Content-Type", "application/x-www-form-urlencoded")
     

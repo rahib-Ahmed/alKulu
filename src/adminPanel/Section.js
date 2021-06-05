@@ -14,6 +14,7 @@ import Check from '../images/check.svg';
 import { useHistory } from "react-router-dom";
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Plus from '../images/plus-circle.svg'
+import Adminmodal from './Modal';
 const useStyles = makeStyles((theme)=>({
     formControl: {
         backgroundColor: 'rgb(255, 255, 255)',
@@ -42,10 +43,7 @@ function Section() {
     const [newcat, setNewcat] = React.useState()
     const [cat,setCat] = React.useState(["None","Hadees","Seerat","Treekh","Sawaneh","Fiqah", "Tasawwuf", "Bayanat wa khitabat", "Radd firqa w batila"]);
 
-    const handleClose = () => {
-    setOpen(false);
-    window.location.replace("/Dashboard")
-  };
+ 
     var imageData = []
     const handleChange = (event) => {
         setInput({
@@ -57,9 +55,7 @@ function Section() {
     function validator(event) {
         
     }
-    const handleCloseBack = () =>{
-        setOpenback(false)
-    }
+  
     const handleFile = (event) => {
 
         for (var i = 0; i < event.target.files.length; i++) {
@@ -93,9 +89,10 @@ function Section() {
             file: filenu,
             bookid: bookid
         }
-        var result = await req.fetchAdmins(obj, 2)
+        var result = "Book added Successfully"
+        // var result = await req.fetchAdmins(obj, 2)
         // console.log(result)
-        if(result.status === "Book added Successfully") {
+        if(result === "Book added Successfully") {
             setOpenback(false)
             setOpen(true)
             localStorage.setItem("currentID", bookid)
@@ -106,11 +103,7 @@ function Section() {
         cat.push(newcat)
         setNewcat('')
     }
-    function directToQR() {
-        // console.log("hjere")
-        localStorage.setItem("first", false)
-        history.push({pathname: "/Dashboard", state: {type: 1, bkid}})
-    }
+  
     return (
         <>
         <div className="section">
@@ -274,36 +267,7 @@ function Section() {
                 </div>
       
         </div>
-        <Modal
-        className="modal"
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <div className="paper">
-              
-              <div>
-              <div className="firstMod">
-              <img style={{paddingTop: '15px', marginRight: '20px'}} src={Check}></img>
-            <h2 className="modalText" id="transition-modal-title">Book added successfully!</h2>
-            </div>
-            <p className="modalID modalText ">Book Id: {bkid}</p>
-            </div>
-            <div className="bottomButton">
-                <input className="modalButton1" onClick={()=>directToQR()} type="button"  value="Get QR Code"/>
-                <input className="modalButton1" onClick={handleClose} type="button" value="Accept" />
-            </div>
-          </div>
-        </Fade>
-      </Modal>
-      <Backdrop className={classes.backdropss} open={openback} onClick={handleCloseBack}> 
-      <CircularProgress color="inherit" />
-      </Backdrop>
+        <Adminmodal data={{type: 1, states: open, stated: openback, bkid: bkid}}/>
         </>
     )
 }

@@ -22,7 +22,7 @@ function CustomToolbar(props) {
   
   const data = props
   var deleteid = []
-console.log(props)
+// console.log(props)
   var handleDelete = async () => {
     for(var i = 0; i<data.selectedRows.select.data.length; i++) {
       deleteid.push(data.selectedRows.table[data.selectedRows.select.data[i].dataIndex].data[0])
@@ -40,7 +40,7 @@ console.log(props)
   }
 
   var handleEdit = () =>{
-    console.log("modal!")
+    // console.log("modal!")
   }
   const classes = dropStyles
 

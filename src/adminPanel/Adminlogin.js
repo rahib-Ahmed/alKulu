@@ -20,7 +20,7 @@ function Adminlogin() {
         let accessToken = Cookies.get("access");
         let refreshToken = Cookies.get("refresh");
 
-         console.log(accessToken)
+        //  console.log(accessToken)
 
         if (refreshToken === undefined) {}
         if(accessToken != undefined) {
@@ -62,17 +62,17 @@ function Adminlogin() {
             email: email,
             password: password
         }
-        console.log(obj)
+        
         var result = await req.fetchAdmins(obj, 0)
         // console.log(result)
         if (result.status === "User not exist") {
-            console.log("insdoe not exist")
+        
             setError("This user does not exist")
         } else if (result.status === "Wrong email or password") {
-            console.log("insdoe no paswrd")
+            
             setError("Wrong email or Password")
         } else if(result.status === "login") {
-            console.log("onside good")
+            
             Cookies.set("refresh", result.res.refresh)
             Cookies.set("access", result.res.access)
             if(Cookies.get("access" === undefined)) {
