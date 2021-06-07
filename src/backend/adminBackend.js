@@ -2,7 +2,7 @@ async function fetchs(endpoint, req) {
     var end;
     // https://alkulu.herokuapp.com/
     // http://localhost:3001/
-    await fetch(`http://localhost:3001/${endpoint}`, req)
+    await fetch(`https://alkulu.herokuapp.com/${endpoint}`, req)
     .then(async (result) => end = result)
     return end
 }
@@ -56,33 +56,36 @@ export async function fetchAdmins(obj, type ) {
         headers: myHeader,
         body: {}
     }
-    
+    var x
     if(type === 0) {
-        var x = await fetchs('users/loginUser', req)
-        return x.json()
+        x = await fetchs('users/loginUser', req)
+        
     }
     else if(type === 1) {
-        var x = await fetchs('users/signup', req)
-        return x.json()
+        x = await fetchs('users/signup', req)
+        
     }
     else if(type === 2) {
-        var x = await fetchs('book/uploadmulter', req1)
-        return x.json()
+        x = await fetchs('book/uploadmulter', req1)
+        
     }  else if(type === 3) {
-        var x = await fetchs('book/getQR', req)
-        return x.json()
+         x = await fetchs('book/getQR', req)
+        
     } else if(type === 4) {
-        var x = await fetchs('book/getBookdata', req)
-        return x.json()
+         x = await fetchs('book/getBookdata', req)
+        
     } else if(type === 5) {
-        var x =  await fetchs('book/action', req)
-        return x.json()
+         x =  await fetchs('book/action', req)
+        
     } else if(type === 6) {
-        var x = await fetchs('users/checkAdmin', req2)
-        return x.json()
+         x = await fetchs('users/checkAdmin', req2)
+        
     } else if(type === 7) {
-        var x = await fetchs('users/refresh', req)
-        return x.json()
+         x = await fetchs('users/refresh', req)
+        
+    } else if(type === 8) {
+         x = await fetchs('book/getRegistration', req)     
     } 
+    return x.json()
 
 }

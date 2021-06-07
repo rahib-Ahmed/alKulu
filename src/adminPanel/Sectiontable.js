@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme)=>({
 function Sectiontable() {
 
     const [responsive, setResponsive] = React.useState("vertical");
-    const [tableBodyHeight, setTableBodyHeight] = React.useState("600px");
+    const [tableBodyHeight, setTableBodyHeight] = React.useState("450px");
     const [tableBodyMaxHeight, setTableBodyMaxHeight] = React.useState("");
     const [databig, setDatabig] = React.useState([])
     const [dataimg,setDataimg] = React.useState()

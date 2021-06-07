@@ -7,12 +7,7 @@ import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Check from '../images/check.svg';
 import { useHistory } from "react-router-dom";
-import CircularProgress from '@material-ui/core/CircularProgress';
 import Plus from '../images/plus-circle.svg'
 import Adminmodal from './Modal';
 const useStyles = makeStyles((theme)=>({
@@ -40,9 +35,9 @@ function Section() {
     const [error, setError] = React.useState('')
     const [openback, setOpenback] = React.useState(false)
     const history = useHistory()
-    const [newcat, setNewcat] = React.useState()
+    const [newcat, setNewcat] = React.useState('')
     const [cat,setCat] = React.useState(["None","Hadees","Seerat","Treekh","Sawaneh","Fiqah", "Tasawwuf", "Bayanat wa khitabat", "Radd firqa w batila"]);
-
+    const [caterror, setCaterror] = React.useState('')
  
     var imageData = []
     const handleChange = (event) => {
@@ -52,9 +47,7 @@ function Section() {
         })
      
     }
-    function validator(event) {
-        
-    }
+    
   
     const handleFile = (event) => {
 
@@ -65,8 +58,8 @@ function Section() {
         setLength(event.nativeEvent.target.files.length)
     }
     var pushCatchange = (event) => {
+        
         setNewcat(event.target.value)
-
     }
 
     async function submit() {
@@ -89,19 +82,27 @@ function Section() {
             file: filenu,
             bookid: bookid
         }
-        var result = "Book added Successfully"
-        // var result = await req.fetchAdmins(obj, 2)
+        // var result = "Book added Successfully"
+        var result = await req.fetchAdmins(obj, 2)
         // console.log(result)
-        if(result === "Book added Successfully") {
+        if(result.status === "Book added Successfully") {
             setOpenback(false)
             setOpen(true)
             localStorage.setItem("currentID", bookid)
         }
 } 
+
+    }
+    function validator(event) {
+        event.target.value === '' ? setCaterror("Empty Category") : setCaterror('')
     }
     function pushCat() {
+        if(newcat === '') {
+            alert("Empty category")
+        } else {
         cat.push(newcat)
         setNewcat('')
+    }
     }
   
     return (
@@ -126,7 +127,7 @@ function Section() {
                         <div className="inputText oneFlex">Title</div>
                         <div className="twoFlex">
                             <input 
-                                onBlur={(e)=>validator(e)}
+                               
                                 onChange={handleChange}
                                 name="title"
                                 placeholder="Book Title"
@@ -138,7 +139,7 @@ function Section() {
                         <div className="inputText oneFlex">Author</div>
                         <div className="threeFlex">
                             <input
-                           onBlur={(e)=>validator(e)}
+                          
                                 onChange={handleChange}
                                 name="author"
                                 placeholder="Book author"
@@ -150,7 +151,7 @@ function Section() {
                             className="inputText oneFlex">Co-Author</div>
                         <div className="threeFlex">
                             <input
-                             onBlur={(e)=>validator(e)}
+                             
                                 onChange={handleChange}
                                 name="coAuthor"
                                 placeholder="Book CoAuthor"
@@ -162,7 +163,7 @@ function Section() {
                         <div className="inputText oneFlex">Publisher</div>
                         <div className="twoFlex">
                             <input
-                            onBlur={(e)=>validator(e)}
+                            
                                 onChange={handleChange}
                                 name="Publisher"
                                 placeholder="Publisher"
@@ -180,21 +181,22 @@ function Section() {
                                     {cat.map((item)=>{
                                         
                                         return (
-                                            <MenuItem onBlur={(e)=>validator(e)} value={item}>{item}</MenuItem>
+                                            <MenuItem value={item}>{item}</MenuItem>
                                         )
                                     })}  
                                 </Select>
                             </FormControl>
-                            <input value={newcat} className="inputBook" style={{marginLeft: '20px'}} type="text" name="CategAdd" onChange={pushCatchange} />
+                            <input value={newcat} onBlur={(e)=>{validator(e)}} className="inputBook" style={{marginLeft: '20px'}} type="text" name="CategAdd" onChange={pushCatchange} />
+                            
                             <img onClick={()=>{pushCat()}} style={{marginLeft: '20px', marginTop: '10px'}} src={Plus}></img>  
                         </div>
                     </div>
-
+                    
                     <div className="row x align-items-center">
                         <div className="inputText oneFlex">Languages</div>
                         <div className="twoFlex">
                             <input
-                            onBlur={(e)=>validator(e)}
+                            
                                 onChange={handleChange}
                                 name="language"
                                 placeholder="Language"
@@ -207,7 +209,7 @@ function Section() {
                         <div className="threeFlex">
                             <input
                             type="number"
-                            onBlur={(e)=>validator(e)}
+                            
                                 onChange={handleChange}
                                 name="Pages"
                                 placeholder="Book Pages"
@@ -219,7 +221,7 @@ function Section() {
                         <div className="threeFlex">
                             <input
                                 type="number"
-                                onBlur={(e)=>validator(e)}
+                                
                                 onChange={handleChange}
                                 name="Volumes"
                                 placeholder="Book Volume"
@@ -230,7 +232,7 @@ function Section() {
                         <div className="inputText oneFlex">Keywords</div>
                         <div className="twoFlex">
                             <input
-                            onBlur={(e)=>validator(e)}
+                            
                                 onChange={handleChange}
                                 name="keywords"
                                 placeholder="Keywords"
@@ -242,7 +244,7 @@ function Section() {
                         <div className="twoFlex">
                             <label>
                                 <input
-                                onBlur={(e)=>validator(e)}
+                               
                                     onChange={handleFile}
                                     type="file"
                                     style={{
