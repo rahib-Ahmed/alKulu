@@ -9,6 +9,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Back from '../images/arrow-left.svg';
 import Print from '../images/printer.svg';
 import Download from '../images/download.svg';
+import { fetchAdmins } from '../backend/adminBackend';
+import Cross from '../images/x.svg'
 const useStyles = makeStyles((theme)=>({
     formControl: {
         backgroundColor: 'rgb(255, 255, 255)',
@@ -159,12 +161,80 @@ function Tablemodal() {
         </>
     )
 }
+function Scannedmodal() {
+  var [open, setOpen] = React.useState(props.data.states)
+  var [openbacks, setOpenbacks] = React.useState(props.data.stated)
+  const [err, setErr] = React.useState('')
+  var data = props.data.qrdata;
+
+  const handleCloseBack = () =>{
+    setOpenbacks(false)
+}
+  const handleClose = () => {
+    setOpen(false)
+  };
+
+  async function submit() {
+    setOpenbacks(true)
+    var obj = {
+      admin: true,
+      issueid: data.bookid
+    }
+    var result = await fetchAdmins(obj, 10)
+    if(result.status === "received") {
+      setOpenbacks(false)
+      setOpen(false)
+    } else if(result.status === "The book is available") {
+      setErr("You are trying to scan an already returned book")
+    }
+  }
+ 
+  return (
+    <>
+    <Modal
+    className="modal"
+    open={open}
+    onClose={handleClose}
+    closeAfterTransition
+    BackdropComponent={Backdrop}
+    BackdropProps={{
+      timeout: 500,
+    }}
+  >
+    <Fade in={open}>
+      <div className="paper2">
+          <div className="returnModalQR">
+            <div>
+            <img onClick={handleClose} src={Back} /></div>
+            <div><img onClick={()=>{handleClose()}} src={Cross}></img></div>
+        </div>
+            <div className="returnBook">
+              <p className="headingreturn">Do you want to return the book?</p>
+              <div className="text1">Title: {data.title}</div>
+              <div className="text1">Author: {data.author}</div>
+              <div className="text1">{err}</div>
+            </div>
+            <div className="footerScanned">
+              <input className="scannedButton" onClick={()=>{submit()}} type="button"  value="Accept" />
+              <input className="scannedButton" onClick={handleClose} type="button" value="Cancel"/>
+            </div>
+      </div>
+    </Fade>
+  </Modal>
+  <Backdrop className={classes.backdropss} open={openbacks} onClick={handleCloseBack}> 
+  <CircularProgress color="inherit" />
+  </Backdrop>
+    </>
+)
+}
 
     return (
         <>{props.data.type === 1? 
         <Sectionmodal />  : 
         props.data.type === 2? 
-        <Tablemodal /> : ""
+        <Tablemodal /> :
+        props.data.type === 3? 
+        <Scannedmodal /> : ""
         }
         </>
     )

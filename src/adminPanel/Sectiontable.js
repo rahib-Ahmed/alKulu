@@ -6,17 +6,7 @@ import CustomToolbarSelect from './Customtoolbar'
 import {makeStyles} from '@material-ui/core/styles';
 import Adminmodal from './Modal';
 import QR from '../images/qr-code.svg'
-const useStyles = makeStyles((theme)=>({
-  formControl: {
-      backgroundColor: 'rgb(255, 255, 255)',
-      width: '20vw'
-  },
-   backdropss: {
-        zIndex: theme.zIndex.drawer + 1,
-        color: '#fff',
-      },
 
-}));
 function Sectiontable() {
 
     const [responsive, setResponsive] = React.useState("vertical");
@@ -27,7 +17,6 @@ function Sectiontable() {
     const [iD,setID] = React.useState()
     const [open, setOpen] = React.useState(false)
     const [openback, setOpenback] = React.useState(false)
-    const classes = useStyles()
     useEffect(async ()=>{
     
         const obj = "get"

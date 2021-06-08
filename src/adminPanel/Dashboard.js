@@ -15,9 +15,11 @@ import Sectiontable from './Sectiontable';
 import Back from '../images/arrow-left-circle.svg'
 import Sectionmanager from './Sectionmanager';
 import { useLocation } from 'react-router';
+import Scanner from './Scanner'
 function Dashboard() {
 const [section, setSection] = React.useState(0)
 const location = useLocation()
+
 useEffect(()=>{
 
     if(localStorage.getItem("first") === "false") {
@@ -28,6 +30,18 @@ useEffect(()=>{
   localStorage.setItem("first", true)
   localStorage.setItem("second", false)
 }, [location])
+var images = req.images()
+var title = req.title()
+var data = []
+
+for(var i=0; i<5; i++){
+    var temp={
+        i: i,
+        images: images[i],
+        title: title[i],
+    }
+data.push(temp)
+}
 
 
 return (
@@ -50,34 +64,15 @@ return (
                 </div>
                 
                 <div className="iconTab">
-               
-                    <div className="somediv"
-                        onClick={()=>{setSection(0)}}
-                    >
-                        <img className="bingo" src={Fileadd}></img>
-                        <div className="textIcon">Add Book</div>
-                    </div>
-                    <div
-                    className="somediv"
-                    onClick={()=>{setSection(1)}}
-                    >
-                        <img className="bingo" src={Camera}></img>
-                        <div className="textIcon">Get QR Code</div>
-                    </div>
-                    <div
-                    className="somediv"
-                    onClick={()=>{setSection(2)}}
-                    >
-                    <img className="bingo" src={Listicon}></img>
-                        <div className="textIcon">Contents</div>
-                    </div>
-                    <div
-                    className="somediv"
-                    onClick={()=>{setSection(3)}}
-                    >
-                    <img className="bingo" src={Settings}></img>
-                        <div className="textIcon">Manager</div>
-                    </div>
+               {data.map((items)=>{
+                   return (
+                   <div className="somediv"
+                   onClick={()=>{setSection(items.i)}}
+               >
+                   <img className="bingo" src={items.images}></img>
+                   <div className="textIcon">{items.title}</div>
+               </div>)
+               })}
                 </div>
                 <div
                     style={{
@@ -96,8 +91,10 @@ return (
                  section === 2? 
                  <Sectiontable />  :
                   section === 3? 
-                  <Sectionmanager /> 
-                  : " "
+                  <Sectionmanager /> : 
+                  section === 4? 
+                  <Scanner /> :
+                  ""
 
             }
                 </div>

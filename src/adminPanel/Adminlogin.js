@@ -77,6 +77,7 @@ function Adminlogin() {
             Cookies.set("access", result.res.access)
             if(Cookies.get("access" === undefined)) {
             localStorage.setItem("name", result.res.name)
+
             var result = await req.fetchAdmins(result.res.access, 6)
             if(result.status === "isAdmin") {
                 history.push("/Dashboard")

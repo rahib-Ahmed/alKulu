@@ -11,20 +11,19 @@ function Sectionmanager() {
   const [databig, setDatabig] = React.useState([])
 
   useEffect(async ()=>{
-    
     const obj = {};
     var result = await req.fetchAdmins(obj, 8)
     setDatabig(result)
 
 }, [])
-    console.log(databig)
+    // console.log(databig)
   const options = {
+
     filter: true,
     filterType: "dropdown",
     responsive,
     tableBodyHeight,
-    tableBodyMaxHeight,
-    customToolbarSelect: (selectedRows, tableMeta) => <CustomToolbarSelect selectedRows={{table: tableMeta, select: selectedRows}} />
+    tableBodyMaxHeight
   };
   const columns = [
     "Bookid", 

@@ -1,8 +1,14 @@
+import Camera from '../images/camera.svg';
+import Settings from '../images/settings.svg';
+import Listicon from '../images/list.svg';
+import Fileadd from '../images/file-plus.svg';
+import QRSCAN from '../images/qr-scan.svg'
+
 async function fetchs(endpoint, req) {
     var end;
     // https://alkulu.herokuapp.com/
     // http://localhost:3001/
-    await fetch(`https://alkulu.herokuapp.com/${endpoint}`, req)
+    await fetch(`http://localhost:3001/${endpoint}`, req)
     .then(async (result) => end = result)
     return end
 }
@@ -38,6 +44,10 @@ export async function fetchAdmins(obj, type ) {
     params.append("type", obj.type)
     params.append("token", obj)
     params.append("qrbookid", obj)
+    params.append("specbookid", obj)
+    params.append("specbookid", obj)
+    params.append("issueid", obj.issueid)
+    params.append("isadmin", obj.admin)
     var header = new Headers()
     header.append("Content-Type", "application/x-www-form-urlencoded")
     
@@ -56,7 +66,7 @@ export async function fetchAdmins(obj, type ) {
         headers: myHeader,
         body: {}
     }
-    var x
+    var x;
     if(type === 0) {
         x = await fetchs('users/loginUser', req)
         
@@ -85,7 +95,24 @@ export async function fetchAdmins(obj, type ) {
         
     } else if(type === 8) {
          x = await fetchs('book/getRegistration', req)     
-    } 
+    } else if(type === 9) {
+        x = await fetchs('book/getspecbook', req)     
+   } else if(type === 10) {
+    x = await fetchs('book/issueBook', req)     
+} 
     return x.json()
 
+}
+
+export function images() {
+    var images = [ Fileadd, Camera, Listicon, Settings, QRSCAN]
+    return images
+}
+export function title() {
+    var title = ["Add Book", "Get QR", "Content", "Manager", "Scanner"]
+    return title
+}
+export function add1() {
+    var add1 = ["Title", "Author", "Co-Author", "Publisher", "Languages", "Pages", "Volumes", "Keywords"]
+    return add1
 }

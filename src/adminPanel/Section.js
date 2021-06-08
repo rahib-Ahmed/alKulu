@@ -38,7 +38,7 @@ function Section() {
     const [newcat, setNewcat] = React.useState('')
     const [cat,setCat] = React.useState(["None","Hadees","Seerat","Treekh","Sawaneh","Fiqah", "Tasawwuf", "Bayanat wa khitabat", "Radd firqa w batila"]);
     const [caterror, setCaterror] = React.useState('')
- 
+    var add = req.add1()
     var imageData = []
     const handleChange = (event) => {
         setInput({
@@ -262,8 +262,7 @@ function Section() {
                                 </Button>
                             </label>
                             <div className="lengthFile inputText" style={{fontSize: '20px'}}>Total files selected: {length}</div>
-                        </div>
-                        
+                        </div>    
                     </div>
                     <div style={{color: '#757575'}} className="modalText">{error}</div>
                 </div>
