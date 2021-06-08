@@ -14,9 +14,9 @@ function Scanner() {
 
  const handleScan = async (data) => {
     if (data) {
-      console.log(typeof data)
+    
       const para = new URL(data)
-      console.log(para)
+     
       const id = new URLSearchParams(para.search)
       var iD = id.get('bookid')
       const result =  await fetchAdmins(iD, 9)

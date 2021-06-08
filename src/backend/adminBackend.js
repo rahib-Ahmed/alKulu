@@ -8,7 +8,7 @@ async function fetchs(endpoint, req) {
     var end;
     // https://alkulu.herokuapp.com/
     // http://localhost:3001/
-    await fetch(`http://localhost:3001/${endpoint}`, req)
+    await fetch(`https://alkulu.herokuapp.com/${endpoint}`, req)
     .then(async (result) => end = result)
     return end
 }
