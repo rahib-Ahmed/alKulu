@@ -9,8 +9,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Back from '../images/arrow-left.svg';
 import Print from '../images/printer.svg';
 import Download from '../images/download.svg';
-import { fetchAdmins } from '../backend/adminBackend';
+import * as req from '../backend/adminBackend';
 import Cross from '../images/x.svg'
+import {fetchAdmins} from '../backend/adminBackend'
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Plus from '../images/plus-circle.svg';
+import Select from '@material-ui/core/Select';
+import {Button} from '@material-ui/core';
+
 const useStyles = makeStyles((theme)=>({
     formControl: {
         backgroundColor: 'rgb(255, 255, 255)',
@@ -227,14 +235,212 @@ function Scannedmodal() {
     </>
 )
 }
+function Editmodal() {
+  var [open, setOpen] = React.useState(props.data.states)
+  var [openbacks, setOpenbacks] = React.useState(props.data.stated)
+  const [err, setErr] = React.useState('')
+  const [cat,setCat] = React.useState(["None","Hadees","Seerat","Treekh","Sawaneh","Fiqah", "Tasawwuf", "Bayanat wa khitabat", "Radd firqa w batila"]);
+  const [input,
+    setInput] = React.useState({})
+    const [filenu,
+      setFilenu] = React.useState()
+    const [newcat, setNewcat] = React.useState('')
+    const [caterror, setCaterror] = React.useState('')
+    const [length, setLength] = React.useState()
+    var imageData = []
+    var data = props.data.qrdata;
+  var ed1 = req.add1()
+  var plac1 = req.plac1()
+  const handleChange = (event) => {
+    setInput({
+        ...input,
+        [event.target.name]: event.target.value
+    })
+ 
+}
+// console.log(input)
+  var data = []
+  for(var i=0;i<5;i++) {
+    var temp = {
+      i: i,
+      ed1: ed1[i],
+      plac1: plac1[i]
+    }
+    data.push(temp)
+  }
+var data2 = []
+for(var i=5;i<8;i++) {
+  var temp = {
+    i: i,
+    ed1: ed1[i],
+    plac1: plac1[i]
+  }
+  data2.push(temp)
+}
+  const handleCloseBack = () =>{
+    setOpenbacks(false)
+}
+  const handleClose = () => {
+    setOpen(false)
+  };
+  var pushCatchange = (event) => {
+        
+    setNewcat(event.target.value)
+}
+function validator(event) {
+  event.target.value === '' ? setCaterror("Empty Category") : setCaterror('')
+}
+const handleFile = (event) => {
 
+  for (var i = 0; i < event.target.files.length; i++) {
+      imageData.push(event.target.files[i])
+  }
+  setFilenu(imageData)
+  setLength(event.nativeEvent.target.files.length)
+}
+
+function pushCat() {
+  if(newcat === '') {
+      alert("Empty category")
+  } else {
+  cat.push(newcat)
+  setNewcat('')
+}
+}
+
+async function submitedit() {
+  
+  setOpenbacks(true)
+
+  const obj = {
+    file: filenu,
+    data: input,
+    type: "update",
+    deleteid: props.data.bkid
+  }
+  var result = await fetchAdmins(obj, 5)
+if(result) {
+  setOpenbacks(false)
+  setOpen(false)
+  window.location.replace("/Dashboard")
+}
+}
+ 
+  return (
+    <>
+    <Modal
+    className="modal"
+    open={open}
+    onClose={handleClose}
+    closeAfterTransition
+    BackdropComponent={Backdrop}
+    BackdropProps={{
+      timeout: 500,
+    }}
+  >
+    <Fade in={open}>
+      <div className="paper4">
+          <div className="returnModalQR">
+            <div>
+            <img onClick={handleClose} src={Back} /></div>
+            <div style={{fontSize: '2vw'}} className="text1">Edit</div>
+            <div><img onClick={()=>{handleClose()}} src={Cross}></img></div>
+        </div>
+            <div className="returnEdit">
+              <div className="edit1">
+                {data.map((items) =>{
+                  return (
+                    <>
+                   <div>
+                   <div className="editText">{items.ed1}</div>
+                   <input className="inputEdit" onChange={handleChange} placeholder={items.plac1} type="text" name={items.ed1} />
+                 </div>
+                 </>
+                 )
+                })}
+               
+              </div>
+              <div className="edit1">
+              {data2.map((items) =>{
+                  return (
+                    <>
+                   <div>
+                   <div className="editText">{items.ed1}</div>
+                   <input className="inputEdit" onChange={handleChange} placeholder={items.plac1} type="text" name={items.ed1} />
+                 </div>
+                 </>
+                 )
+                })}
+                <div>
+                <div className="editText">Category</div>
+                            <FormControl className="formControl" variant="outlined" >
+                                <InputLabel>Category</InputLabel>
+                                <Select
+                                    name="Categories"
+                                    onChange={handleChange}
+                                   >
+                                    {cat.map((item)=>{
+                                        
+                                        return (
+                                            <MenuItem  value={item}>{item}</MenuItem>
+                                        )
+                                    })}  
+                                </Select>
+                            </FormControl>
+                            <div>
+                            <input value={newcat} onBlur={(e)=>{validator(e)}} className="inputEdit"  type="text" name="CategAdd" onChange={pushCatchange} />
+                            
+                            <img onClick={()=>{pushCat()}} style={{marginLeft: '20px'}} src={Plus}></img>  
+                            </div>
+                        </div>
+                   
+                        <div className="imageEdit">
+                            <label>
+                                <input
+                               
+                                    onChange={handleFile}
+                                    type="file"
+                                    style={{
+                                    display: 'none'
+                                }}
+                                    multiple
+                                    accept="image/*"/>
+                                <Button
+                                    style={{
+                                    marginTop: '10px'
+                                }}
+                                    variant="outlined"
+                                    component="span">
+                                    Choose Files
+                                </Button>
+                            </label>
+                            <div className="lengthFile inputText" style={{fontSize: '20px'}}>Total files selected: {length}</div>
+                        </div>  
+                        
+              </div>
+              
+            </div>
+            <div className="footerScanned">
+              <input onClick={()=>{submitedit()}} className="scannedButton" type="button"  value="Save Changes" />
+            </div>
+      </div>
+    </Fade>
+  </Modal>
+  <Backdrop className={classes.backdropss} open={openbacks} onClick={handleCloseBack}> 
+  <CircularProgress color="inherit" />
+  </Backdrop>
+    </>
+  )
+}
     return (
         <>{props.data.type === 1? 
         <Sectionmodal />  : 
         props.data.type === 2? 
         <Tablemodal /> :
         props.data.type === 3? 
-        <Scannedmodal /> : ""
+        <Scannedmodal /> : 
+        props.data.type === 4 && props.data.edit === "edit"?
+        <Editmodal /> : ""
         }
         </>
     )

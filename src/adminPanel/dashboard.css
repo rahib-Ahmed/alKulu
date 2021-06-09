@@ -103,6 +103,33 @@ margin-top: 30px;
   border-radius: 12px;
   margin-left: 10px;
 }
+.paper4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgb(226, 238, 232);
+  width: 70%;
+  height: 90%;
+  border-radius: 21px;
+}
+.returnEdit {
+  /* background-color: khaki; */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 90%;
+  height: 100%;
+}
+.edit1 {
+  display: flex;
+  flex-direction: column;
+  /* background-color: black; */
+  height: 100%;
+  width: 50%;
+  /* border: 1px solid blue; */
+}
+
 .text1 {
   width: auto; /* 168px */
   height: auto; /* 17px */
@@ -177,6 +204,41 @@ margin-top: 30px;
   width: 40%;
   height: 60vh;
   border-radius: 21px;
+}
+.editText {
+  width: auto; /* 62px */
+  height: auto; /* 37px */
+  overflow: visible;
+  white-space: pre;
+  font-weight: 700;
+  font-style: normal;
+  font-family: "Philosopher", serif;
+  color: #334B49;
+  letter-spacing: 0px;
+  line-height: 1.2;
+  font-size: 26px;
+  margin-top: 4px;
+}
+
+.inputEditx {
+  margin-top: 2vh;
+  padding: 16px;
+}
+.formControl {
+  background-color: rgb(255, 255, 255);
+  width: 25vw
+}
+.inputEdit {
+  background-color: rgb(255, 255, 255);
+  color:rgb(51, 75, 73);
+  border: rgba(0, 0, 0, 0);
+  border-radius: 8px;
+  border-width: 1px;
+  caret-color: rgb(51, 51, 51);
+  padding: 10px;
+  width: 24vw;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
 }
 .imgQR {
   width: 17.5vw;
@@ -322,6 +384,11 @@ margin-left: 20px;
   display: flex;
   width: 40vw;
   margin-left: 20px;
+ }
+ .imageEdit {
+   margin-top: 2vh;
+  display: flex;
+  width: 40vw;  
  }
  .threeFlex {
   display: flex;

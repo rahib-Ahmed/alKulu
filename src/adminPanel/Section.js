@@ -64,7 +64,7 @@ function Section() {
 
     async function submit() {
         
-            if(input.Pages === "" || input.Publisher === "" || input.Volumes === "" || input.author === ""
+            if(input.Title === "" || input.Pages === "" || input.Publisher === "" || input.Volumes === "" || input.Author === ""
             || input.language === "" || input.keywords === "" || input.coAuthor === "" || filenu === undefined) {
                 alert("Input Fields Empty")
                 setError("Input Fields Empty")
@@ -129,7 +129,7 @@ function Section() {
                             <input 
                                
                                 onChange={handleChange}
-                                name="title"
+                                name="Title"
                                 placeholder="Book Title"
                                 className="inputBook"/>
                         </div>
@@ -141,7 +141,7 @@ function Section() {
                             <input
                           
                                 onChange={handleChange}
-                                name="author"
+                                name="Author"
                                 placeholder="Book author"
                                 className="inputBook alag"/>
                         </div>
@@ -153,7 +153,7 @@ function Section() {
                             <input
                              
                                 onChange={handleChange}
-                                name="coAuthor"
+                                name="CoAuthor"
                                 placeholder="Book CoAuthor"
                                 className="inputBook alag"/>
                         </div>
@@ -234,7 +234,7 @@ function Section() {
                             <input
                             
                                 onChange={handleChange}
-                                name="keywords"
+                                name="Keywords"
                                 placeholder="Keywords"
                                 className="inputBook"/>
                         </div>

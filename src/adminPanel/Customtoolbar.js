@@ -5,7 +5,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { Modal } from "@material-ui/core";
 import * as req from "../backend/adminBackend";
-
+import Adminmodal from './Modal';
 
 const dropStyles = {
  iconButton: {
@@ -19,8 +19,11 @@ const dropStyles = {
 
 };
 function CustomToolbar(props) {
-  
+  const [open, setOpen] = React.useState(false)
+  const [openback, setOpenback] = React.useState(false)
   const data = props
+ 
+  const id = data.selectedRows.table[data.selectedRows.select.data[0].dataIndex].data[0]
   var deleteid = []
 // console.log(props)
   var handleDelete = async () => {
@@ -40,6 +43,11 @@ function CustomToolbar(props) {
   }
 
   var handleEdit = () =>{
+    if(data.selectedRows.select.data.length > 1) {
+      alert("cannot edit more than one field at a time")
+    } else {
+      setOpen(true)
+    }
     // console.log("modal!")
   }
   const classes = dropStyles
@@ -55,7 +63,7 @@ function CustomToolbar(props) {
           </IconButton>    
           </div>
       </React.Fragment>
-    
+      <Adminmodal data={{type: 4, edit: "edit", bkid: id, states: open, stated: openback}} />
 </>
     );
   

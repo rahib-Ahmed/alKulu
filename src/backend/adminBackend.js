@@ -8,7 +8,7 @@ async function fetchs(endpoint, req) {
     var end;
     // https://alkulu.herokuapp.com/
     // http://localhost:3001/
-    await fetch(`https://alkulu.herokuapp.com/${endpoint}`, req)
+    await fetch(`http://localhost:3001/${endpoint}`, req)
     .then(async (result) => end = result)
     return end
 }
@@ -17,24 +17,30 @@ export async function fetchAdmins(obj, type ) {
     var myHeader = new Headers()
     myHeader.append('authorization', `Bearer ${obj}`);
 
-    if(type===2){
+    if(type===2 || obj.type === "update"){
     var formData = new FormData()
+    if(obj.file === undefined || obj.file.length === 0) {
+      
+    } else {
     for (let i = 0; i < obj.file.length; i++) {
         formData.append(`imageData`, obj.file[i])
-    }
-    formData.append("title", obj.data.title)
-    formData.append("author", obj.data.author)
+    }}
+
+    formData.append("type", obj.type)
+    formData.append("title", obj.data.Title)
+    formData.append("author", obj.data.Author)
     formData.append("categories", obj.data.Categories)
-    formData.append("coAuthor", obj.data.coAuthor)
-    formData.append("language", obj.data.language)
+    formData.append("coAuthor", obj.data.CoAuthor)
+    formData.append("language", obj.data.Language)
     formData.append("pages", obj.data.Pages)
     formData.append("volume", obj.data.Volumes)
-    formData.append("keywords", obj.data.keywords)
+    formData.append("keywords", obj.data.Keywords)
     formData.append("imageName", "cover-" + Date.now())
     formData.append("bookid", obj.bookid)
+    formData.append("deleteid", obj.deleteid)
     formData.append("publisher", obj.data.Publisher)
 }
-//    console.log(obj.email)
+
     var params = new URLSearchParams();
     params.append("email", obj.email);
     params.append("password", obj.password);
@@ -84,10 +90,14 @@ export async function fetchAdmins(obj, type ) {
     } else if(type === 4) {
          x = await fetchs('book/getBookdata', req)
         
-    } else if(type === 5) {
-         x =  await fetchs('book/action', req)
+    } else if(type === 5 && obj.type === "update") {
+         x =  await fetchs('book/action', req1)
         
-    } else if(type === 6) {
+    }else if(type === 5 ) {
+        x =  await fetchs('book/action', req)
+       
+   } 
+    else if(type === 6) {
          x = await fetchs('users/checkAdmin', req2)
         
     } else if(type === 7) {
@@ -113,6 +123,10 @@ export function title() {
     return title
 }
 export function add1() {
-    var add1 = ["Title", "Author", "Co-Author", "Publisher", "Languages", "Pages", "Volumes", "Keywords"]
+    var add1 = ["Title", "Author", "CoAuthor", "Pages", "Volumes", "Publisher", "Language", "Keywords"]
     return add1
+}
+export function plac1() {
+    var plac1 = ["Book Title", "Name of the Author", "Name of the Co Author", "Pages", "Volume", "Name of the Publisher", "Language", "Keywords"]
+    return plac1
 }
