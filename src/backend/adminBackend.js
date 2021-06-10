@@ -39,7 +39,7 @@ export async function fetchAdmins(obj, type ) {
     formData.append("bookid", obj.bookid)
     formData.append("deleteid", obj.deleteid)
     formData.append("publisher", obj.data.Publisher)
-}
+} 
 
     var params = new URLSearchParams();
     params.append("email", obj.email);
@@ -54,6 +54,7 @@ export async function fetchAdmins(obj, type ) {
     params.append("specbookid", obj)
     params.append("issueid", obj.issueid)
     params.append("isadmin", obj.admin)
+
     var header = new Headers()
     header.append("Content-Type", "application/x-www-form-urlencoded")
     
@@ -108,7 +109,7 @@ export async function fetchAdmins(obj, type ) {
     } else if(type === 9) {
         x = await fetchs('book/getspecbook', req)     
    } else if(type === 10) {
-    x = await fetchs('book/issueBook', req)     
+         x = await fetchs('book/issueBook', req)     
 } 
     return x.json()
 

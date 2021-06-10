@@ -19,9 +19,12 @@ function Scanner() {
      
       const id = new URLSearchParams(para.search)
       var iD = id.get('bookid')
+  
       const result =  await fetchAdmins(iD, 9)
+      if(result){
       setData(result)
       setOpen(true)
+    }
     }
   }
   const handleError = (err) => {
