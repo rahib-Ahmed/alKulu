@@ -552,6 +552,9 @@ margin-left: 20px;
   padding-bottom: 1px; 
   margin-left:9.5vw
 }
+.mastertext {
+  font-size: 2vw;
+}
 .modalButton1{
   background-color: rgb(51, 75, 73);
   text-align: center;
@@ -860,5 +863,53 @@ margin-left: 20px;
      .TTX {
        display: flex;
      }
+     .returnEdit {
+   
+      overflow-y: scroll;
+      flex-direction: column;
+      width: 90%;
+   }
+   .editText {
+     font-size: 15px;
+   }
+   .edit1{
+     width: 100%;
+   }
+   .inputEdit {
+     width: 90%;
+   }
+   .inputEditx {
+     background-color: black;
+     width: 90%;
+   }
+   .footerScanned {
+     margin-bottom: 3px;
+   }
+   .imageEdit {
+     /* background-color: black; */
+     flex-direction: column;
+     /* margin: 0; */
+     width:100%;
+   }
+   .legend{
+     margin: 0;
+     margin-top: 2vh;
+     /* background-color: black; */
+   }
+   .imageeditx {
+    height: 30px;
+    width: 30px;
+   }
+   .mastertext {
+     /* background-color: black; */
+     width: 12vw;
+     height: 3vh;
+     font-size: 3vh;
+     margin: 0;
+   }
+   .returnModalQR {
+     margin-top: 15px;
+     margin-bottom: 5px;
+   }
  }
 

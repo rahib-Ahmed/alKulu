@@ -341,10 +341,10 @@ if(result) {
     <Fade in={open}>
       <div className="paper4">
           <div className="returnModalQR">
-            <div>
-            <img onClick={handleClose} src={Back} /></div>
-            <div style={{fontSize: '2vw'}} className="text1">Edit</div>
-            <div><img onClick={()=>{handleClose()}} src={Cross}></img></div>
+            <div  >
+            <img className="imageeditx" onClick={handleClose} src={Back} /></div>
+            <div className="text1 mastertext">Edit</div>
+            <div  ><img className="imageeditx" onClick={()=>{handleClose()}} src={Cross}></img></div>
         </div>
             <div className="returnEdit">
               <div className="edit1">
@@ -414,7 +414,7 @@ if(result) {
                                     Choose Files
                                 </Button>
                             </label>
-                            <div className="lengthFile inputText" style={{fontSize: '20px'}}>Total files selected: {length}</div>
+                            <div className="lengthFile legend inputText" style={{fontSize: '20px'}}>Total files selected: {length}</div>
                         </div>  
                         
               </div>
